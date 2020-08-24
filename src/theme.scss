@@ -1,0 +1,111 @@
+@import "~@angular/material/theming";
+
+/////////////////////////////////////////////////////
+// DEFAULT THEME COLORS: define the default theme.
+/////////////////////////////////////////////////////
+$app-light-primary: mat-palette($mat-indigo);
+$app-light-accent: mat-palette($mat-pink, 700, 300, 900);
+$app-light-warn: mat-palette($mat-deep-orange);
+
+/////////////////////////////////////////////////////
+// DARK THEME COLORS: define an alternate dark theme.
+/////////////////////////////////////////////////////
+$app-dark-primary: mat-palette($mat-blue-grey);
+$app-dark-accent: mat-palette($mat-green, A100, 50, 300);
+$app-dark-warn: mat-palette($mat-red);
+
+///////////// NO NEED TO CHANGE /////////////////
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+$app-light-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-light-primary,
+      accent: $app-light-accent,
+      warn: $app-light-warn,
+    ),
+  )
+);
+
+// Include the default theme styles (color and default density)
+@include angular-material-theme($app-light-theme);
+
+// Define css variables that can be accesed in regular components
+// HELP: mat-color works this way:
+//    It gets a color from a theme palette (the output of mat-palette).
+//    The hue can be one of the standard values (500, A400, etc.), one of the three preconfigured
+//    hues (default, lighter, darker), or any of the aforementioned prefixed with "-contrast".
+//
+//    @param $color-map The theme palette (output of mat-palette).
+//    @param $hue The hue from the palette to use. If this is a value between 0 and 1, it will
+//     be treated as opacity.
+//    @param $opacity The alpha channel value for the color.
+$primary: mat-color($app-light-primary);
+$primary_lighter: mat-color($app-light-primary, lighter);
+$primary_darker: mat-color($app-light-primary, darker);
+$accent: mat-color($app-light-accent);
+$accent_lighter: mat-color($app-light-accent, lighter);
+$accent_darker: mat-color($app-light-accent, darker);
+$warn: mat-color($app-light-warn);
+$fg_palette: map-get($app-light-theme, foreground);
+$bg_palette: map-get($app-light-theme, background);
+$fg: map-get($fg_palette, text);
+$bg: map-get($bg_palette, background);
+
+// Define the color variables in the root element, no need to declare a light-theme class
+// (this provides the variables by default)
+:root {
+  --primary: #{$primary};
+  --primary_lighter: #{$primary_lighter};
+  --primary_darker: #{$primary_darker};
+  --accent: #{$accent};
+  --accent_lighter: #{$accent_lighter};
+  --accent_darker: #{$accent_darker};
+  --warn: #{$warn};
+  --fg: #{$fg};
+  --bg: #{$bg};
+}
+
+$app-dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $app-dark-primary,
+      accent: $app-dark-accent,
+      warn: $app-dark-warn,
+    ),
+  )
+);
+
+// Include the dark color styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+
+.app-dark-theme {
+  @include angular-material-color($app-dark-theme);
+  // Define css variables that can be accesed in regular components
+  $primary: mat-color($app-dark-primary);
+  $primary_lighter: mat-color($app-dark-primary, lighter);
+  $primary_darker: mat-color($app-dark-primary, darker);
+  $accent: mat-color($app-dark-accent);
+  $accent_lighter: mat-color($app-dark-accent, lighter);
+  $accent_darker: mat-color($app-dark-accent, darker);
+
+  $warn: mat-color($app-dark-warn);
+  $fg_palette: map-get($app-dark-theme, foreground);
+  $bg_palette: map-get($app-dark-theme, background);
+  $fg: map-get($fg_palette, text);
+  $bg: map-get($bg_palette, background);
+
+  --primary: #{$primary};
+  --primary_lighter: #{$primary_lighter};
+  --primary_darker: #{$primary_darker};
+  --accent: #{$accent};
+  --accent_lighter: #{$accent_lighter};
+  --accent_darker: #{$accent_darker};
+  --warn: #{$warn};
+  --fg: #{$fg};
+  --bg: #{$bg};
+}

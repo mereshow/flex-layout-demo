@@ -1,0 +1,54 @@
+<!-- Angular material: Finally, if your app's content is not placed inside of a mat-sidenav-container element, 
+    you need to add the mat-app-background class to your wrapper element (for example the body). 
+    This ensures that the proper theme background is applied to your page. -->
+<div [ngClass]="{'mat-app-background': 'true', 'app-dark-theme': themeService.darkMode$ | async}" fxFlexFill
+    fxLayout="row" fxLayoutAlign="center center">
+    <form [formGroup]="loginForm" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="90%" (ngSubmit)="login()">
+        <mat-card class="mat-elevation-z12">
+            <mat-card-title>App</mat-card-title>
+            <mat-card-subtitle>Log in</mat-card-subtitle>
+            <mat-card-content fxLayout="column">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>email</mat-label>
+                    <input matInput required formControlName="email" type="email">
+
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+                        Email is
+                        <strong>required</strong>
+                    </mat-error>
+
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput required formControlName="password" type="password">
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="full-width" fxFlex>
+                    <mat-slide-toggle formControlName="rememberMe" color="primary">Remember me</mat-slide-toggle>
+                </div>
+
+                <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async"
+                    (change)="setDarkMode($event)">
+                    Dark mode
+                </mat-slide-toggle>
+
+            </mat-card-content>
+
+            <mat-card-actions>
+                <button mat-raised-button color="primary" [disabled]="loginForm.invalid || loading">
+                    Login</button>
+                <button mat-stroked-button (click)="resetPassword()">Reset Password</button>
+            </mat-card-actions>
+
+        </mat-card>
+
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    </form>
+</div>

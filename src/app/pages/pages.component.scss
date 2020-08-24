@@ -1,0 +1,19 @@
+.brand-name {
+    text-decoration: none;
+    color: white;
+  }
+  
+  mat-nav-list mat-list-item.active {
+    border-right: 2px solid var(--primary);
+    color: var(--primary);
+  }
+  
+  // Padding for all the content in the sidenav
+  mat-sidenav-content {
+    padding: 10px;
+  }
+  
+  .progress-bar-container {
+    height: 5px;
+  }
+  
