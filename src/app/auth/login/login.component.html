@@ -5,13 +5,19 @@
     fxLayout="row" fxLayoutAlign="center center">
     <form [formGroup]="loginForm" fxFlex="33%" fxFlex.sm="50%" fxFlex.xs="90%" (ngSubmit)="login()">
         <mat-card class="mat-elevation-z12">
-            <mat-card-title>App</mat-card-title>
+            <mat-card-title>App
+                <div fxFlex></div>
+                <mat-slide-toggle fxFlex="none" color="primary" [checked]="themeService.darkMode$ | async"
+                    (change)="setDarkMode($event)">
+                    <mat-icon fxFlex="none">brightness_3</mat-icon>
+                </mat-slide-toggle>
+            </mat-card-title>
             <mat-card-subtitle>Log in</mat-card-subtitle>
             <mat-card-content fxLayout="column">
 
                 <mat-form-field appearance="outline">
                     <mat-label>email</mat-label>
-                    <input matInput required formControlName="email" type="email">
+                    <input matInput required formControlName="email" type="email" autocomplete="username">
 
                     <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
                         Please enter a valid email address
@@ -25,20 +31,14 @@
 
                 <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput required formControlName="password" type="password">
+                    <input matInput required formControlName="password" type="password" autocomplete="current-password">
                     <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
                         Password is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
-                <div class="full-width" fxFlex>
+                <div fxFlex>
                     <mat-slide-toggle formControlName="rememberMe" color="primary">Remember me</mat-slide-toggle>
                 </div>
-
-                <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async"
-                    (change)="setDarkMode($event)">
-                    Dark mode
-                </mat-slide-toggle>
-
             </mat-card-content>
 
             <mat-card-actions>

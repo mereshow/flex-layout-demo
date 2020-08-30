@@ -1,5 +1,8 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { NGXLogger } from 'ngx-logger';
+import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../dashboard.service';
+import { Greeting } from '../greeting';
+import { NotificationService } from '../../../core/services/notification.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -7,11 +10,21 @@ import { NGXLogger } from 'ngx-logger';
   styleUrls: ['./dashboard-home.component.scss']
 })
 export class DashboardHomeComponent implements OnInit {
-  currentUser: any;
 
-  constructor(private logger: NGXLogger) {
+  greeting: Greeting = { id: 0, content: '' };
+
+  constructor(private dashboardService: DashboardService, private notificationService: NotificationService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.dashboardService.getGreeting().
+      pipe(tap(data => console.log(data))).
+      subscribe(
+        greeting => this.greeting.content = greeting,
+        err => {
+          this.greeting = { id: 0, content: '' };
+          this.notificationService.error('Error retrieving data');
+        }
+      );
   }
 }

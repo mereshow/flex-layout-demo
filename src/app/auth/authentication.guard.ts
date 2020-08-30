@@ -34,6 +34,7 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild, CanLo
   }
 
   checkLogin(url: string): true | UrlTree {
+    console.log('In checkLogin. Logged in? ', this.authService.isLoggedIn());
     if (this.authService.isLoggedIn()) {
       return true;
     }

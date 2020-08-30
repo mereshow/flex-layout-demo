@@ -47,9 +47,17 @@ export class PagesComponent implements OnInit, OnDestroy {
         this.mediaWatcher.unsubscribe();
     }
 
-    setDarkMode(change: any): void {
+    setColorMode(change: any): void {
         if (change && change.checked) { this.themeService.setDarkTheme(); }
         else { this.themeService.setLightTheme(); }
+    }
+
+    setDarkMode(): void {
+        this.themeService.setDarkTheme();
+    }
+
+    setLightMode(): void {
+        this.themeService.setLightTheme();
     }
 
     setMobileContent(isMobile: boolean): void {

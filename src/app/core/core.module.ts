@@ -1,13 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NGXLogger } from 'ngx-logger';
-
-
 import { throwIfAlreadyLoaded } from './guards/module-import.guard';
 import { SharedModule } from '../shared/shared.module';
 import { NotificationComponent } from './model/notification/notification.component';
-
+import { UnauthorizeInterceptor } from './interceptors/unauthorize.interceptor';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,8 +13,9 @@ import { NotificationComponent } from './model/notification/notification.compone
     SharedModule
   ],
   declarations: [
-  NotificationComponent],
+    NotificationComponent],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UnauthorizeInterceptor, multi: true },
     { provide: NGXLogger, useClass: NGXLogger },
   ],
   exports: [

@@ -1,8 +1,20 @@
+import { Authority } from './authority';
+
 export class User {
-    id: string;
     username: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    token: string;
+    firstName = '';
+    lastName = '';
+    authorities: Authority[];
+
+    constructor(username: string) {
+        this.username = username;
+    }
+
+    addAuthority(authority: Authority): void {
+        if (authority) { this.authorities.push(authority); }
+    }
+
+    hasAuthority(authority: Authority): boolean{
+        return this.authorities.includes(authority);
+    }
 }

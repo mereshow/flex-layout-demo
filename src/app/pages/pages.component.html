@@ -42,10 +42,12 @@
         <mat-icon>person</mat-icon>
         <span>Account</span>
       </a>
-      <mat-slide-toggle class="mat-menu-item" color="primary" [checked]="themeService.darkMode$ | async"
-        (change)="setDarkMode($event)">
-        Dark mode
-      </mat-slide-toggle>
+
+      <div fxFlex="none" class="mat-menu-item">
+        <mat-icon>brightness_3</mat-icon>
+        <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
+        </mat-slide-toggle>
+      </div>
 
       <button mat-menu-item (click)="authenticationService.logout()">
         <mat-icon>exit_to_app</mat-icon>
@@ -62,12 +64,14 @@
       <mat-nav-list fxFlex="auto" fxLayout="column">
         <!-- <h3 matSubheader>Navigation</h3> -->
 
+        <!-- DASHBOARD -->
         <mat-list-item fxFlex="none" [routerLink]="['dashboard']" routerLinkActive="active"
           (click)="isMobileView? navMenu.toggle(): ''">
           <mat-icon mat-list-icon>dashboard</mat-icon>
           <a>Dashboard</a>
         </mat-list-item>
 
+        <!-- HISTORICAL -->
         <mat-list-item fxFlex="none" [routerLink]="['historical']" routerLinkActive="active"
           (click)="isMobileView? navMenu.toggle(): ''">
           <mat-icon mat-list-icon>history</mat-icon>
@@ -89,8 +93,8 @@
         </mat-list-item>
 
         <mat-list-item fxFlex="none">
-          <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setDarkMode($event)">
-            Dark mode
+          <mat-icon mat-list-icon >brightness_3</mat-icon>
+          <mat-slide-toggle  color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
           </mat-slide-toggle>
         </mat-list-item>
 

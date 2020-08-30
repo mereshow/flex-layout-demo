@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthenticationGuard } from '../auth/authentication.guard';
+import { Dashboard2Component } from './dashboard2/dashboard2.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
+        //component: Dashboard2Component
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
