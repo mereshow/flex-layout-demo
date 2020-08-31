@@ -1,10 +1,9 @@
 import { NgModule, Injectable } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PagesComponent } from './pages.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AuthenticationGuard } from '../auth/authentication.guard';
-import { Dashboard2Component } from './dashboard2/dashboard2.component';
+import { PagesComponent } from './pages.component';
+import { Pages2Component } from './pages2/pages2.component';
 
 @Injectable({
   providedIn: 'root'
