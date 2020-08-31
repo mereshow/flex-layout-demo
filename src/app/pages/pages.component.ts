@@ -1,67 +1,53 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription, timer } from 'rxjs';
-import { MediaObserver, MediaChange } from '@angular/flex-layout';
-
-import { ThemeService } from '../core/services/theme.service';
-import { RouterEvent, NavigationStart, NavigationEnd, Router } from '@angular/router';
-import { AuthenticationService } from '../auth/authentication.service';
+import { Component, Renderer2, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+import { ThemeService } from 'src/app/core/services/theme.service';
+import { Router, RouterEvent, NavigationStart, NavigationEnd } from '@angular/router';
+import { AuthenticationService } from 'src/app/auth/authentication.service';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
-    selector: 'app-pages',
-    templateUrl: './pages.component.html',
-    styleUrls: ['./pages.component.scss']
+  selector: 'app-pages',
+  templateUrl: './pages.component.html',
+  styleUrls: ['./pages.component.scss']
 })
-export class PagesComponent implements OnInit, OnDestroy {
+export class PagesComponent implements OnInit {
 
-    private mediaWatcher: Subscription;
-    isMobileView: boolean;
-    loading: boolean;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
 
-    constructor(mediaObserver: MediaObserver,
-        public themeService: ThemeService,
-        public authenticationService: AuthenticationService,
-        router: Router) {
-        this.mediaWatcher = mediaObserver.asObservable().
-            subscribe((change: MediaChange[]) => {
-                // TODO: the first element is the active breakpoint. Investigate a better approach 
-                // to cover a more general case
-                this.setMobileContent(change[0].mqAlias === 'xs');
-            });
+  loading: boolean;
 
-        this.loading = false;
-        router.events.subscribe(
-            (event: RouterEvent): void => {
-                if (event instanceof NavigationStart) {
-                    this.loading = true;
-                } else if (event instanceof NavigationEnd) {
-                    this.loading = false;
-                }
-            }
-        );
+  constructor(public themeService: ThemeService, private breakpointObserver: BreakpointObserver,
+    private overlayContainer: OverlayContainer,
+    public authenticationService: AuthenticationService,
+    router: Router, private renderer: Renderer2) {
+
+    this.loading = false;
+    router.events.subscribe(
+      (event: RouterEvent): void => {
+        if (event instanceof NavigationStart) {
+          this.loading = true;
+        } else if (event instanceof NavigationEnd) {
+          this.loading = false;
+        }
+      }
+    );
+  }
+  ngOnInit(): void {
+  }
+
+  setColorMode(change: any): void {
+    if (change && change.checked) {
+      this.themeService.setDarkTheme();
     }
-
-    ngOnInit(): void {
+    else {
+      this.themeService.setLightTheme();
     }
-
-    ngOnDestroy(): void {
-        this.mediaWatcher.unsubscribe();
-    }
-
-    setColorMode(change: any): void {
-        if (change && change.checked) { this.themeService.setDarkTheme(); }
-        else { this.themeService.setLightTheme(); }
-    }
-
-    setDarkMode(): void {
-        this.themeService.setDarkTheme();
-    }
-
-    setLightMode(): void {
-        this.themeService.setLightTheme();
-    }
-
-    setMobileContent(isMobile: boolean): void {
-        this.isMobileView = isMobile;
-    }
+  }
 
 }

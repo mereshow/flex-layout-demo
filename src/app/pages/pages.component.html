@@ -1,79 +1,24 @@
-<div fxFlexFill fxLayout="column" [ngClass]="{'app-dark-theme': themeService.darkMode$ | async}">
-  <!-- Page toolbar -->
-  <!--ngStyle.xs="position:sticky; top : 0; z-index: 2;"-->
-  <mat-toolbar fxFlex="nogrow" fxLayout="row" color="primary">
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
-    <!-- Button that triggers the navigation menu -->
-    <button mat-icon-button (click)="navMenu.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-
-    <!-- Brand -->
-    <a class="brand-name" [routerLink]="['/']" matTooltip="Home">
-      App name
-    </a>
-
-    <!-- Spacer -->
-    <span fxFlex="auto"></span>
-
-    <!-- Right menu: notification -->
-    <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-      <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
-    </button>
-    <mat-menu #notificationMenu="matMenu">
-      <a mat-menu-item>
-        <span>You have new tasks</span>
-      </a>
-      <a mat-menu-item>
-        <span>You have a new message</span>
-      </a>
-    </mat-menu>
-
-    <!-- Right menus: user -->
-    <button mat-button [matMenuTriggerFor]="userMenu">
-      <mat-icon>person</mat-icon>
-      <span fxShow fxHide.xs>
-        <!-- {{userName}} -->
-      </span>
-    </button>
-
-    <mat-menu #userMenu="matMenu">
-      <a mat-menu-item [routerLink]="['account/profile']">
-        <mat-icon>person</mat-icon>
-        <span>Account</span>
-      </a>
-
-      <div fxFlex="none" class="mat-menu-item">
-        <mat-icon>brightness_3</mat-icon>
-        <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
-        </mat-slide-toggle>
-      </div>
-
-      <button mat-menu-item (click)="authenticationService.logout()">
-        <mat-icon>exit_to_app</mat-icon>
-        Log out
-      </button>
-    </mat-menu>
-  </mat-toolbar>
-
-  <!-- Navigation container -->
-  <mat-sidenav-container fxFlex="grow">
-
-    <!-- Natigation menu -->
-    <mat-sidenav #navMenu [opened]="!isMobileView" [mode]="isMobileView ? 'over' : 'side'">
-      <mat-nav-list fxFlex="auto" fxLayout="column">
-        <!-- <h3 matSubheader>Navigation</h3> -->
-
+    <!-- BUG: used to fix: https://github.com/angular/components/issues/13983-->
+    <div fxLayout="column" fxFlex>
+      <mat-toolbar>
+        <!-- Button that triggers the navigation menu -->
+        <button mat-icon-button (click)="drawer.toggle()" *ngIf="!(isHandset$|async) && drawer.opened">
+          <mat-icon>menu</mat-icon>
+        </button>
+        Menu</mat-toolbar>
+      <mat-nav-list fxLayout="column" fxFlex>
         <!-- DASHBOARD -->
-        <mat-list-item fxFlex="none" [routerLink]="['dashboard']" routerLinkActive="active"
-          (click)="isMobileView? navMenu.toggle(): ''">
+        <mat-list-item fxFlex="none" [routerLink]="['dashboard']" routerLinkActive="active">
           <mat-icon mat-list-icon>dashboard</mat-icon>
           <a>Dashboard</a>
         </mat-list-item>
 
         <!-- HISTORICAL -->
-        <mat-list-item fxFlex="none" [routerLink]="['historical']" routerLinkActive="active"
-          (click)="isMobileView? navMenu.toggle(): ''">
+        <mat-list-item fxFlex="none" [routerLink]="['historical']" routerLinkActive="active">
           <mat-icon mat-list-icon>history</mat-icon>
           <a>Historical data</a>
         </mat-list-item>
@@ -86,37 +31,90 @@
           <a>Log out</a>
         </mat-list-item>
 
-        <mat-list-item fxFlex="none" [routerLink]="['account/profile']" routerLinkActive="active"
-          (click)="isMobileView? navMenu.toggle(): ''">
+        <mat-list-item fxFlex="none" [routerLink]="['account/profile']" routerLinkActive="active">
           <mat-icon mat-list-icon>person</mat-icon>
           <a>Account</a>
         </mat-list-item>
 
         <mat-list-item fxFlex="none">
-          <mat-icon mat-list-icon >brightness_3</mat-icon>
-          <mat-slide-toggle  color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
+          <mat-icon mat-list-icon>brightness_3</mat-icon>
+          <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
           </mat-slide-toggle>
         </mat-list-item>
 
-        <mat-list-item fxFlex="none" [routerLink]="['about']" routerLinkActive="active"
-          (click)="isMobileView? navMenu.toggle(): ''">
+        <mat-list-item fxFlex="none" [routerLink]="['about']" routerLinkActive="active">
           <mat-icon mat-list-icon>info_outline</mat-icon>
           <a>About</a>
         </mat-list-item>
 
       </mat-nav-list>
-    </mat-sidenav>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
 
-    <!-- Main content -->
-    <mat-sidenav-content fxFlex fxLayout="column" fxLayoutAlign="start stretch">
+    <!-- TOOLBAR -->
+    <mat-toolbar color="primary">
+      <!-- Button that triggers the navigation menu -->
+      <button mat-icon-button (click)="drawer.toggle()" *ngIf="!drawer.opened">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Brand -->
+      <a class="brand-name" [routerLink]="['/']" matTooltip="Home">
+        App name
+      </a>
+
+      <!-- Spacer -->
+      <span fxFlex="auto"></span>
+
+      <!-- Right menu: notification -->
+      <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+        <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
+      </button>
+      <mat-menu #notificationMenu="matMenu">
+        <a mat-menu-item>
+          <span>You have new tasks</span>
+        </a>
+        <a mat-menu-item>
+          <span>You have a new message</span>
+        </a>
+      </mat-menu>
+
+      <!-- Right menus: user -->
+      <button mat-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>person</mat-icon>
+        <span fxShow fxHide.xs>
+          <!-- {{userName}} -->
+        </span>
+      </button>
+
+      <mat-menu #userMenu="matMenu">
+        <a mat-menu-item [routerLink]="['account/profile']">
+          <mat-icon>person</mat-icon>
+          <span>Account</span>
+        </a>
+
+        <div fxFlex="none" class="mat-menu-item">
+          <mat-icon>brightness_3</mat-icon>
+          <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
+          </mat-slide-toggle>
+        </div>
+
+        <button mat-menu-item (click)="authenticationService.logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Log out
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <!-- Pages content -->
+    <div fxLayout="column" fxLayoutAlign="start stretch" class="pages-content">
 
       <div fxFlex fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
         <mat-spinner></mat-spinner>
       </div>
 
       <router-outlet *ngIf="!loading"></router-outlet>
-
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-
-</div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

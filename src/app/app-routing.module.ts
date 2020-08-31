@@ -7,8 +7,8 @@ import { AuthenticationGuard } from './auth/authentication.guard';
 const routes: Routes = [
     {
         path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
-        canLoad: [AuthenticationGuard], // No need to load if not authenticated, just load the login page
-        canActivate: [AuthenticationGuard],
+        //canLoad: [AuthenticationGuard], // No need to load if not authenticated, just load the login page
+        //canActivate: [AuthenticationGuard],
         runGuardsAndResolvers: 'always',
         // Force to run the guards to increase security. This way we only have to check Authentication in the root route
         // leaving the children the task of Authorization

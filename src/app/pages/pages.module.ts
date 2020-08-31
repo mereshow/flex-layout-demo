@@ -15,13 +15,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { Pages2Component } from './pages2/pages2.component';
 
 @NgModule({
   declarations: [
     PagesComponent,
-    PageNotFoundComponent,
-    Pages2Component],
+    PageNotFoundComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
