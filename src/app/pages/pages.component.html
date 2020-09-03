@@ -1,5 +1,5 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+<mat-sidenav-container>
+  <mat-sidenav #drawer fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
 
     <!-- BUG: used to fix: https://github.com/angular/components/issues/13983-->
@@ -20,7 +20,7 @@
         <!-- HISTORICAL -->
         <mat-list-item fxFlex="none" [routerLink]="['historical']" routerLinkActive="active">
           <mat-icon mat-list-icon>history</mat-icon>
-          <a>Historical data</a>
+          <a>Historical</a>
         </mat-list-item>
 
         <!-- The divider occupies the remaining of the list, so "About" is at the end -->
@@ -107,14 +107,12 @@
       </mat-menu>
     </mat-toolbar>
 
-    <!-- Pages content -->
-    <div fxLayout="column" fxLayoutAlign="start stretch" class="pages-content">
-
-      <div fxFlex fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
-        <mat-spinner></mat-spinner>
-      </div>
-
-      <router-outlet *ngIf="!loading"></router-outlet>
+    <!-- PAGES CONTENT -->
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
+      <mat-spinner></mat-spinner>
     </div>
+    <router-outlet class="pages-router-outlet" *ngIf="!loading"></router-outlet>
+    <!-- See styles css: the router adds the routed component (as a sibling of router-outlet) 
+      and flex-layout adds the default layout (row) to it. Styles.css changes the default flex-layout behavior -->
   </mat-sidenav-content>
 </mat-sidenav-container>

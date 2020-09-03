@@ -1,3 +1,4 @@
-table {
-    width: 100%;
+.page-container2 {
+    // 100% height - toolbar - 2* "pages-content padding" (7 px)
+    height: calc(100vh - 64px - 14px);
 }

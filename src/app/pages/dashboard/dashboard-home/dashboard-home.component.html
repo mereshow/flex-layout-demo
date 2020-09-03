@@ -1,22 +1,28 @@
+<div fxFlexAlign="stretch" class="page-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
 
-<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-card fxFlex="50%" fxLayout="column">
+    <mat-card-header fxFlex="initial">
+      <mat-card-title>
+        <button mat-button (click)="resizeChart()">Resize</button>
+        Text</mat-card-title>
+      <!-- <mat-card-subtitle>Nothing, testing layout superposition</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="7px">
 
-  <h2 fxFlexAlign="center">Welcome back</h2>
+      <div fxFlex [theme]="(themeService.darkMode$ | async)?'dark':'undefined'" echarts [options]="chartOption"
+        class="demo-chart" (chartInit)="onChartInit($event)"></div>
+      <div fxFlex [theme]="(themeService.darkMode$ | async)?'dark':'light'" echarts [options]="chartOption"
+        class="demo-chart" (chartInit)="onChartInit($event)"></div>
+    </mat-card-content>
+  </mat-card>
 
-  <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-    <mat-icon fxFlex>dashboard</mat-icon>
-    <p fxFlex>This is the dashboard.</p>
+  <mat-card fxFlex="50%" fxLayout="column">
+    <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="7px">
 
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{greeting.id}}</mat-card-title>
-        <mat-card-subtitle>Nothing</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{greeting.content}}
-        </p>
-      </mat-card-content>
-    </mat-card>
-  </div>
+      <div fxFlex fxLayout="row" [theme]="(themeService.darkMode$ | async)?'dark':'undefined'" echarts [options]="chartOption"
+        class="demo-chart"></div>
+      <div fxFlex fxLayout="row" [theme]="(themeService.darkMode$ | async)?'dark':'light'" echarts [options]="chartOption"
+        class="demo-chart"></div>
+    </mat-card-content>
+  </mat-card>
 </div>

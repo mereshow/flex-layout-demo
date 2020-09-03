@@ -1,12 +1,16 @@
 TODO
-
+    Integrate Leaflet:
+        
+    Design polygons:
+        https://geojson.io/#map=15/43.3510/-8.5231
+        
     Implement authorization:
         https://devblogs.microsoft.com/premier-developer/angular-how-to-implement-role-based-security/
         https://github.com/laurieatkinson/ng-patterns-demo/tree/master/src/app/framework/services
 
     Add i18n:
         https://github.com/ngx-translate/core/issues/495#issuecomment-568422004
-    
+
 
 HOWTO:
     Commit messages:
@@ -38,3 +42,15 @@ HOWTO:
         use the imperative, present tense: "change" not "changed" nor "changes"
         don't capitalize the first letter
         no dot (.) at the end
+
+RESOURCES:
+    Angular:
+        Angular material: 
+        Angular material icons: https://material.io/resources/icons/?style=baseline
+        Angular material theme: 
+        Angular flex-layout: 
+    Echarts:
+        ngx-echarts: https://xieziyu.github.io/ngx-echarts/#/welcome
+    Leaflet:
+        ngx-leaflet: 
+        Polygon designer: https://geojson.io/#map=15/43.3510/-8.5231

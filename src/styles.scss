@@ -1,4 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* The router adds the routed component (as a sibling of router-outlet) 
+      and flex-layout adds the default layout (row) to it. 
+      This changes the default flex-layout behavior.
+      With this we try to keep a minimal DOM: the alternative is adding 
+      an extra div wrapping the router-outlet and another inside every page. 
+      It needs to be added here due to view encapsulation.
+      */
+router-outlet.pages-router-outlet + * {
+    // flex: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    box-sizing: border-box;
+    padding: 7px; // Padding for all the content in the sidenav
+
+    /* :not(:last-child) {
+        margin-bottom: 7px;
+    } */
+}

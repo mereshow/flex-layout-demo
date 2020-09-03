@@ -1,37 +1,32 @@
-.sidenav-container {
+mat-sidenav-container {
   height: 100%;
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
+mat-sidenav {
+  width: 200px;
+  // Toolbar inside nav menu, used so we have the same size as primary toolbar
+  mat-toolbar {
+    background: inherit;
+  }
 }
 
-.mat-toolbar.mat-primary {
-  position: -webkit-sticky; //Safary
-  position: sticky;
-  top: 0;
-  z-index: 1;
+mat-sidenav-content {
+  // Primary toolbar
+  mat-toolbar {
+    position: -webkit-sticky; //Safary
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 }
-
-///////////
-// My classes
-
 
 .brand-name {
   text-decoration: none;
   color: white;
 }
 
+// Selected navigation element behavior
 mat-nav-list mat-list-item.active {
-  border-right: 2px solid var(--primary);
+  border-right: 4px solid var(--primary);
   color: var(--primary);
-}
-
-// Padding for all the content in the sidenav
-.pages-content {
-  padding: 10px;
-}
-
-.progress-bar-container {
-  height: 5px;
 }

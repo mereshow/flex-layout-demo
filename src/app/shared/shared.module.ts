@@ -31,8 +31,15 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgxEchartsModule } from 'ngx-echarts';
+
 
 @NgModule({
+  imports: [
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+    }),
+  ],
   exports: [
     ReactiveFormsModule,
     FlexLayoutModule,
@@ -64,7 +71,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatExpansionModule,
     DragDropModule,
     MatSortModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    NgxEchartsModule
   ],
 })
 export class SharedModule { }

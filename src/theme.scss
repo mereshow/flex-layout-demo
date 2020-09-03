@@ -1,17 +1,29 @@
 @import "~@angular/material/theming";
 
+// Pallete colors:
+// https://material.io/resources/color/#!/?view.left=0&view.right=0
+
 /////////////////////////////////////////////////////
 // DEFAULT THEME COLORS: define the default theme.
 /////////////////////////////////////////////////////
-$app-light-primary: mat-palette($mat-indigo);
+/* $app-light-primary: mat-palette($mat-indigo);
 $app-light-accent: mat-palette($mat-pink, 700, 300, 900);
-$app-light-warn: mat-palette($mat-deep-orange);
+$app-light-warn: mat-palette($mat-deep-orange); */
 
 /////////////////////////////////////////////////////
 // DARK THEME COLORS: define an alternate dark theme.
 /////////////////////////////////////////////////////
-$app-dark-primary: mat-palette($mat-blue-grey);
+/* $app-dark-primary: mat-palette($mat-blue-grey);
 $app-dark-accent: mat-palette($mat-green, A100, 50, 300);
+$app-dark-warn: mat-palette($mat-red); */
+
+
+// GEAMA TEST: light-blue. Primary: 800. Secondary: 400
+$app-light-primary: mat-palette($mat-light-blue, 800);
+$app-light-accent: mat-palette($mat-light-blue, 400);
+$app-light-warn: mat-palette($mat-red);
+$app-dark-primary: mat-palette($mat-light-blue, 800);
+$app-dark-accent: mat-palette($mat-light-blue, 400);
 $app-dark-warn: mat-palette($mat-red);
 
 ///////////// NO NEED TO CHANGE /////////////////
