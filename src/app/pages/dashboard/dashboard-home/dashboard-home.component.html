@@ -1,10 +1,8 @@
-<div fxFlex fxLayout="column" fxLayoutGap="7px" style="background-color: cornflowerblue;">
-  <div fxFlex fxLayout="row" fxLayoutGap="7px" style="background-color: fuchsia;">
-    <div fxFlex="50%" echarts [options]="chartOption"
-      [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)" style="background-color: chocolate;">
-    </div>
-    <div fxFlex="50%" echarts [options]="chartOption"
-      [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)" style="background-color: chocolate;">
-    </div>
-  </div>
+<div fxFlex fxLayout="row" fxLayoutGap="7px" style="background-color: fuchsia;">
+	<div fxFlex="50%" echarts [options]="chartOption" [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)"
+		style="background-color: chocolate;">
+	</div>
+	<div fxFlex="50%" echarts [options]="chartOption" [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)"
+		style="background-color: chocolate;">
+	</div>
 </div>

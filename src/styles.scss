@@ -24,7 +24,7 @@ router-outlet.pages-router-outlet + * {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: stretch;
+    //align-items: stretch;
     box-sizing: border-box;
     padding: 7px; // Padding for all the content in the sidenav
 
