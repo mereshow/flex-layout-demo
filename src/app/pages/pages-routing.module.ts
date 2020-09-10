@@ -14,13 +14,6 @@ const routes: Routes = [
           import("./dashboard/dashboard.module").then(m => m.DashboardModule)
       },
       {
-        path: "dashboard_nogap",
-        loadChildren: () =>
-          import("./dashboard_nogap/dashboard.module").then(
-            m => m.DashboardModule
-          )
-      },
-      {
         path: "historical",
         loadChildren: () =>
           import("./historical/historical.module").then(m => m.HistoricalModule)

@@ -15,13 +15,7 @@
         <mat-list-item fxFlex="none" [routerLink]="['dashboard']" routerLinkActive="active"
           [routerLinkActiveOptions]="{exact: true}">
           <mat-icon mat-list-icon>dashboard</mat-icon>
-          <a>Dashboard gap</a>
-        </mat-list-item>
-
-        <mat-list-item fxFlex="none" [routerLink]="['dashboard_nogap']" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}">
-          <mat-icon mat-list-icon>dashboard</mat-icon>
-          <a>Dashboard no gap</a>
+          <a>Dashboard</a>
         </mat-list-item>
 
         <!-- HISTORICAL -->
@@ -59,9 +53,7 @@
       <a mat-icon-button [routerLink]="['dashboard']" matTooltip="Gap">
         <mat-icon>dashboard</mat-icon>
       </a>
-      <a mat-icon-button [routerLink]="['dashboard_nogap']" matTooltip="No gap">
-        <mat-icon color="warn">dashboard</mat-icon>
-      </a>
+
     </mat-toolbar>
 
     <!-- PAGES CONTENT -->
