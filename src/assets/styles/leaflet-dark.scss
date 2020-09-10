@@ -1,0 +1,17 @@
+@use '../../theme_variables' as *;
+
+/* Customise Zoom Controls */
+.app-dark-theme {
+    .leaflet-control, .leaflet-bar {
+        color: rgba($dark-fg, 0.7);
+        background-color: rgba($dark-bg, 0.7);
+        a {
+            color: rgba($dark-fg, 0.7);;
+            background-color: transparent;
+            &:hover {
+                color: rgba($dark-fg, 0.9);
+                background-color: rgba($dark-bg, 0.9);
+            }
+        }
+    }
+}

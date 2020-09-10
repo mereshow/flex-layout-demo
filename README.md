@@ -1,9 +1,4 @@
-TODO
-    Integrate Leaflet:
-        
-    Design polygons:
-        https://geojson.io/#map=15/43.3510/-8.5231
-        
+TODO  
     Implement authorization:
         https://devblogs.microsoft.com/premier-developer/angular-how-to-implement-role-based-security/
         https://github.com/laurieatkinson/ng-patterns-demo/tree/master/src/app/framework/services
@@ -51,6 +46,19 @@ RESOURCES:
         Angular flex-layout: 
     Echarts:
         ngx-echarts: https://xieziyu.github.io/ngx-echarts/#/welcome
-    Leaflet:
-        ngx-leaflet: 
-        Polygon designer: https://geojson.io/#map=15/43.3510/-8.5231
+        echarts: https://echarts.apache.org/en/index.html
+            cheat-sheet: https://echarts.apache.org/en/cheat-sheet.html
+            examples: https://echarts.apache.org/examples/en/index.html
+            api: https://echarts.apache.org/en/api.html#echarts
+            spreadsheet tool: https://echarts.apache.org/en/spreadsheet.html
+    Leaflet: https://leafletjs.com/
+        ngx-leaflet: https://github.com/Asymmetrik/ngx-leaflet
+        Map design:
+            https://geojson.io/#map=15/43.3510/-8.5231
+            https://mapshaper.org/
+            https://wiki.openstreetmap.org/wiki/Precision_of_coordinates
+        Colors:
+            https://github.com/xtk93x/Leaflet.TileLayer.ColorFilter
+        Turorials:
+            https://medium.com/runic-software/the-simple-guide-to-angular-leaflet-maps-41de83db45f1
+            

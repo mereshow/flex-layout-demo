@@ -1,0 +1,91 @@
+@import "~@angular/material/theming";
+
+// Pallete colors:
+// https://material.io/resources/color/#!/?view.left=0&view.right=0
+
+/////////////////////////////////////////////////////
+// DEFAULT THEME COLORS: define the default theme.
+/////////////////////////////////////////////////////
+/* $app-light-primary: mat-palette($mat-indigo);
+$app-light-accent: mat-palette($mat-pink, 700, 300, 900);
+$app-light-warn: mat-palette($mat-deep-orange); */
+
+/////////////////////////////////////////////////////
+// DARK THEME COLORS: define an alternate dark theme.
+/////////////////////////////////////////////////////
+/* $app-dark-primary: mat-palette($mat-blue-grey);
+$app-dark-accent: mat-palette($mat-green, A100, 50, 300);
+$app-dark-warn: mat-palette($mat-red); */
+
+// GEAMA TEST: light-blue. Primary: 800. Secondary: 400
+$app-light-primary: mat-palette($mat-light-blue, 800);
+$app-light-accent: mat-palette($mat-light-blue, 400);
+$app-light-warn: mat-palette($mat-red);
+$app-dark-primary: mat-palette($mat-light-blue, 800);
+$app-dark-accent: mat-palette($mat-light-blue, 400);
+$app-dark-warn: mat-palette($mat-red);
+
+///////////// NO NEED TO CHANGE /////////////////
+
+$app-light-theme: mat-light-theme(
+  (
+    color: (
+      primary: $app-light-primary,
+      accent: $app-light-accent,
+      warn: $app-light-warn,
+    ),
+  )
+);
+
+
+// Define css variables that can be accesed in regular components
+// HELP: mat-color works this way:
+//    It gets a color from a theme palette (the output of mat-palette).
+//    The hue can be one of the standard values (500, A400, etc.), one of the three preconfigured
+//    hues (default, lighter, darker), or any of the aforementioned prefixed with "-contrast".
+//
+//    @param $color-map The theme palette (output of mat-palette).
+//    @param $hue The hue from the palette to use. If this is a value between 0 and 1, it will
+//     be treated as opacity.
+//    @param $opacity The alpha channel value for the color.
+
+// Define the color variables in the root element, no need to declare a light-theme class
+// (this provides the variables by default)
+$primary: mat-color($app-light-primary);
+$primary-lighter: mat-color($app-light-primary, lighter);
+$primary_darker: mat-color($app-light-primary, darker);
+$accent: mat-color($app-light-accent);
+$accent-lighter: mat-color($app-light-accent, lighter);
+$accent_darker: mat-color($app-light-accent, darker);
+$warn: mat-color($app-light-warn);
+$fg-palette: map-get($app-light-theme, foreground);
+$bg-palette: map-get($app-light-theme, background);
+$fg: map-get($fg-palette, text);
+$bg: map-get($bg-palette, background);
+
+$app-dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $app-dark-primary,
+      accent: $app-dark-accent,
+      warn: $app-dark-warn,
+    ),
+  )
+);
+
+// Include the dark color styles inside of a block with a CSS class. You can make this
+// CSS class whatever you want. In this example, any component inside of an element with
+// `.app-dark-theme` will be affected by this alternate dark theme instead of the default theme.
+
+$dark-primary: mat-color($app-dark-primary);
+$dark-primary-lighter: mat-color($app-dark-primary, lighter);
+$dark-primary-darker: mat-color($app-dark-primary, darker);
+$dark-accent: mat-color($app-dark-accent);
+$dark-accent-lighter: mat-color($app-dark-accent, lighter);
+$dark-accent-darker: mat-color($app-dark-accent, darker);
+
+$dark-warn: mat-color($app-dark-warn);
+$dark-fg-palette: map-get($app-dark-theme, foreground);
+$dark-bg-palette: map-get($app-dark-theme, background);
+$dark-fg: map-get($dark-fg-palette, text);
+$dark-bg: map-get($dark-bg-palette, background);

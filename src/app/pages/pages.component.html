@@ -12,9 +12,16 @@
         Menu</mat-toolbar>
       <mat-nav-list fxLayout="column" fxFlex>
         <!-- DASHBOARD -->
-        <mat-list-item fxFlex="none" [routerLink]="['dashboard']" routerLinkActive="active">
+        <mat-list-item fxFlex="none" [routerLink]="['dashboard']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
           <mat-icon mat-list-icon>dashboard</mat-icon>
-          <a>Dashboard</a>
+          <a>Dashboard gap</a>
+        </mat-list-item>
+
+        <mat-list-item fxFlex="none" [routerLink]="['dashboard_nogap']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          <mat-icon mat-list-icon>dashboard</mat-icon>
+          <a>Dashboard no gap</a>
         </mat-list-item>
 
         <!-- HISTORICAL -->
@@ -24,28 +31,9 @@
         </mat-list-item>
 
         <!-- The divider occupies the remaining of the list, so "About" is at the end -->
-        <mat-divider fxFlex="grow"></mat-divider>
+        <mat-divider fxFlex="auto"></mat-divider>
 
-        <mat-list-item fxFlex="none" (click)="authenticationService.logout()">
-          <mat-icon mat-list-icon>exit_to_app</mat-icon>
-          <a>Log out</a>
-        </mat-list-item>
-
-        <mat-list-item fxFlex="none" [routerLink]="['account/profile']" routerLinkActive="active">
-          <mat-icon mat-list-icon>person</mat-icon>
-          <a>Account</a>
-        </mat-list-item>
-
-        <mat-list-item fxFlex="none">
-          <mat-icon mat-list-icon>brightness_3</mat-icon>
-          <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
-          </mat-slide-toggle>
-        </mat-list-item>
-
-        <mat-list-item fxFlex="none" [routerLink]="['about']" routerLinkActive="active">
-          <mat-icon mat-list-icon>info_outline</mat-icon>
-          <a>About</a>
-        </mat-list-item>
+        <!-- <h3 matSubheader>Settings</h3> -->
 
       </mat-nav-list>
     </div>
@@ -67,44 +55,13 @@
       <!-- Spacer -->
       <span fxFlex="auto"></span>
 
-      <!-- Right menu: notification -->
-      <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
-        <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
-      </button>
-      <mat-menu #notificationMenu="matMenu">
-        <a mat-menu-item>
-          <span>You have new tasks</span>
-        </a>
-        <a mat-menu-item>
-          <span>You have a new message</span>
-        </a>
-      </mat-menu>
-
-      <!-- Right menus: user -->
-      <button mat-button [matMenuTriggerFor]="userMenu">
-        <mat-icon>person</mat-icon>
-        <span fxShow fxHide.xs>
-          <!-- {{userName}} -->
-        </span>
-      </button>
-
-      <mat-menu #userMenu="matMenu">
-        <a mat-menu-item [routerLink]="['account/profile']">
-          <mat-icon>person</mat-icon>
-          <span>Account</span>
-        </a>
-
-        <div fxFlex="none" class="mat-menu-item">
-          <mat-icon>brightness_3</mat-icon>
-          <mat-slide-toggle color="primary" [checked]="themeService.darkMode$ | async" (change)="setColorMode($event)">
-          </mat-slide-toggle>
-        </div>
-
-        <button mat-menu-item (click)="authenticationService.logout()">
-          <mat-icon>exit_to_app</mat-icon>
-          Log out
-        </button>
-      </mat-menu>
+      <!-- Right menu -->
+      <a mat-icon-button [routerLink]="['dashboard']" matTooltip="Gap">
+        <mat-icon>dashboard</mat-icon>
+      </a>
+      <a mat-icon-button [routerLink]="['dashboard_nogap']" matTooltip="No gap">
+        <mat-icon color="warn">dashboard</mat-icon>
+      </a>
     </mat-toolbar>
 
     <!-- PAGES CONTENT -->

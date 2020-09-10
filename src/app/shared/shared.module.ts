@@ -14,6 +14,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
@@ -32,12 +33,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxEchartsModule } from 'ngx-echarts';
-
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   imports: [
     NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+      echarts: () => import('echarts'),
     }),
   ],
   exports: [
@@ -51,6 +52,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
     MatListModule,
     MatCardModule,
     MatProgressBarModule,
+    MatGridListModule,
     MatInputModule,
     MatSnackBarModule,
     MatMenuModule,
@@ -72,7 +74,8 @@ import { NgxEchartsModule } from 'ngx-echarts';
     DragDropModule,
     MatSortModule,
     MatMomentDateModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    LeafletModule
   ],
 })
 export class SharedModule { }

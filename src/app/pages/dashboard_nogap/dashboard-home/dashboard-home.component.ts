@@ -7,7 +7,7 @@ import { Map, latLng, tileLayer, circle, polygon } from 'leaflet';
   templateUrl: './dashboard-home.component.html',
   styleUrls: ['./dashboard-home.component.scss']
 })
-export class DashboardHomeComponent implements OnDestroy {
+export class DashboardHomeComponentNoGap implements OnDestroy {
 
   private maps: Map[] = [];
   private charts: any[] = [];

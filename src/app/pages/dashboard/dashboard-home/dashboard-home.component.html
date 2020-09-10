@@ -1,28 +1,21 @@
-<div fxFlexAlign="stretch" class="page-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="10px">
+<!-- https://echarts.apache.org/en/cheat-sheet.html -->
 
-  <mat-card fxFlex="50%" fxLayout="column">
-    <mat-card-header fxFlex="initial">
-      <mat-card-title>
-        <button mat-button (click)="resizeChart()">Resize</button>
-        Text</mat-card-title>
-      <!-- <mat-card-subtitle>Nothing, testing layout superposition</mat-card-subtitle> -->
-    </mat-card-header>
-    <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="7px">
-
-      <div fxFlex [theme]="(themeService.darkMode$ | async)?'dark':'undefined'" echarts [options]="chartOption"
-        class="demo-chart" (chartInit)="onChartInit($event)"></div>
-      <div fxFlex [theme]="(themeService.darkMode$ | async)?'dark':'light'" echarts [options]="chartOption"
-        class="demo-chart" (chartInit)="onChartInit($event)"></div>
-    </mat-card-content>
-  </mat-card>
-
-  <mat-card fxFlex="50%" fxLayout="column">
-    <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="7px">
-
-      <div fxFlex fxLayout="row" [theme]="(themeService.darkMode$ | async)?'dark':'undefined'" echarts [options]="chartOption"
-        class="demo-chart"></div>
-      <div fxFlex fxLayout="row" [theme]="(themeService.darkMode$ | async)?'dark':'light'" echarts [options]="chartOption"
-        class="demo-chart"></div>
-    </mat-card-content>
-  </mat-card>
+<div fxFlex fxLayout="column" fxLayoutGap="7px" style="background-color: cornflowerblue;">
+  <!--   <div fxFlex="50%" fxLayout="row" fxLayoutGap="1px" style="background-color: fuchsia;">
+    <div fxFlex="50%" class="dark" leaflet [leafletOptions]="mapOptions" (leafletMapReady)="onMapReady($event)"
+      [leafletLayersControl]="layersControl" style="background-color: chocolate;"></div>
+    <div fxFlex="50%" [theme]="(themeService.darkMode$ | async)?'dark':'undefined'" echarts [options]="chartOption"
+      [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)" style="background-color: chocolate;">
+    </div>
+  </div> -->
+  <div fxFlex fxLayout="row" fxLayoutGap="1px" style="background-color: fuchsia;">
+    <!-- <div fxFlex="50%" style="background-color: chocolate;"></div>
+    <div fxFlex="50%" style="background-color: chocolate;"></div> -->
+    <div fxFlex="50%" echarts [options]="chartOption"
+      [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)" style="background-color: chocolate;">
+    </div>
+    <div fxFlex="50%" echarts [options]="chartOption"
+      [initOpts]="chartInitOpts" (chartInit)="onChartInit($event)" style="background-color: chocolate;">
+    </div>
+  </div>
 </div>
