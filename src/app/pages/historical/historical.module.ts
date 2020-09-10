@@ -15,4 +15,4 @@ import { HistoricalListComponent } from './historical-list/historical-list.compo
   entryComponents: [
   ]
 })
-export class CustomersModule { }
+export class HistoricalModule { }

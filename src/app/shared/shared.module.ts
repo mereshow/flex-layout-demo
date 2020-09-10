@@ -33,7 +33,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   imports: [
@@ -74,8 +73,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     DragDropModule,
     MatSortModule,
     MatMomentDateModule,
-    NgxEchartsModule,
-    LeafletModule
+    NgxEchartsModule
   ],
 })
 export class SharedModule { }

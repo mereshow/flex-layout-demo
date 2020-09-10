@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
-
 const routes: Routes = [
     {
         path: 'pages', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule),
@@ -11,7 +9,10 @@ const routes: Routes = [
         // leaving the children the task of Authorization
     },
     { path: '', redirectTo: 'pages', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
+    {
+        path: '**',
+        loadChildren: () => import('./pages/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule),
+    },  // Wildcard route for a 404 page
 ];
 
 @NgModule({

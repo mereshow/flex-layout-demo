@@ -18,7 +18,7 @@ const routes: Routes = [
       },
       {
         path: 'historical',
-        loadChildren: () => import('./historical/historical.module').then(m => m.CustomersModule)
+        loadChildren: () => import('./historical/historical.module').then(m => m.HistoricalModule)
       },
       {
         path: '',
@@ -27,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: '**',
-        component: PageNotFoundComponent,
+        loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule),
       },
     ],
   },
