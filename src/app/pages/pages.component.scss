@@ -27,6 +27,6 @@ mat-sidenav-content {
 
 // Selected navigation element behavior
 mat-nav-list mat-list-item.active {
-  border-right: 4px solid var(--primary);
-  color: var(--primary);
+  border-right: 4px solid blue;
+  color: blue;
 }

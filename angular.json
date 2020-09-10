@@ -24,10 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/theme.scss",
-              "node_modules/leaflet/dist/leaflet.css",
-              "src/assets/styles/leaflet-dark.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -92,10 +89,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "src/theme.scss",
-              "node_modules/leaflet/dist/leaflet.css",
-              "src/assets/styles/leaflet-dark.scss"
+              "src/styles.scss"
             ],
             "scripts": []
           }
